@@ -1,9 +1,20 @@
 ﻿namespace MP_KT3_2025;
 
-class Program
+public static class MainLogic
 {
-    static void Main(string[] args)
+    public static void RunLogic()
     {
-        Console.WriteLine("Hello, World!");
+        var randomUsers = new List<User>();
+        UserGenerator.GenerateRandomUsers(randomUsers, 10);
+
+        Console.WriteLine();
+    }
+}
+
+public static class Program
+{
+    private static void Main(string[] _)
+    {
+        MainLogic.RunLogic();
     }
 }
