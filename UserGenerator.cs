@@ -7,7 +7,7 @@ public static class UserGenerator
     public static void GenerateRandomUsers(List<User> ret, int count)
     {
         var faker = new Faker<User>()
-            .RuleFor(u => u.Uuid, Guid.CreateVersion7)
+            .RuleFor(u => u.Id, Guid.CreateVersion7)
             .RuleFor(u => u.FirstName, f => f.Name.FirstName())
             .RuleFor(u => u.LastName, f => f.Name.LastName())
             .RuleFor(u => u.Email, f => f.Internet.Email())
