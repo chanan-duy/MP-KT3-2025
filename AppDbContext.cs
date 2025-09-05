@@ -10,4 +10,22 @@ public class AppDbContext : DbContext
     {
         optionsBuilder.UseSqlite("Data Source=database1.db");
     }
+
+    public override int SaveChanges()
+    {
+        var entries = ChangeTracker.Entries()
+            .Where(e => e is { Entity: User, State: EntityState.Added or EntityState.Modified });
+
+        foreach (var entry in entries)
+        {
+            var user = (User)entry.Entity;
+
+            if (!user.IsValidDateOfBirth())
+            {
+                throw new RegistrationException($"User {user.Email} must be at least 14 years old");
+            }
+        }
+
+        return base.SaveChanges();
+    }
 }
