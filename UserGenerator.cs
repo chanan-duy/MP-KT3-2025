@@ -11,7 +11,8 @@ public static class UserGenerator
             .RuleFor(u => u.FirstName, f => f.Name.FirstName())
             .RuleFor(u => u.LastName, f => f.Name.LastName())
             .RuleFor(u => u.Email, f => f.Internet.Email())
-            .RuleFor(u => u.DateOfBirth, f => f.Date.RecentDateOnly(20).ToString("O"));
+            .RuleFor(u => u.DateOfBirth,
+                f => f.Date.BetweenDateOnly(new DateOnly(2007, 1, 1), new DateOnly(2014, 1, 1)).ToString("O"));
 
         for (var i = 0; i < count; i++)
         {
